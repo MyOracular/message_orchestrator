@@ -18,7 +18,6 @@ class MessageOrchestrator extends ChangeNotifier {
     return _instance!;
   }
 
-  final StorageAdapter _storage;
   final MessageRuleEvaluator _ruleEvaluator;
   final MessageQueue _queue = MessageQueue();
   
@@ -31,8 +30,8 @@ class MessageOrchestrator extends ChangeNotifier {
 
   bool _isProcessing = false;
 
-  MessageOrchestrator._(this._storage) 
-      : _ruleEvaluator = MessageRuleEvaluator(_storage);
+  MessageOrchestrator._(StorageAdapter storage) 
+      : _ruleEvaluator = MessageRuleEvaluator(storage);
 
   /// Initialize the orchestrator singleton.
   static Future<void> init({StorageAdapter? storage}) async {

@@ -7,12 +7,12 @@ class BaseBottomSheetWidget extends StatelessWidget {
   final VoidCallback? onPrimaryAction;
 
   const BaseBottomSheetWidget({
-    Key? key,
+    super.key,
     required this.title,
     required this.content,
     required this.primaryButtonText,
     this.onPrimaryAction,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -6,11 +6,11 @@ class BaseToastWidget extends StatelessWidget {
   final Color? backgroundColor;
 
   const BaseToastWidget({
-    Key? key,
+    super.key,
     required this.message,
     this.icon,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
