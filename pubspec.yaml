@@ -1,6 +1,6 @@
 name: flutter_message_orchestrator
 description: "A production-grade Flutter package for orchestrating in-app messages, alerts, and overlays with persistence and display rules."
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/MyOracular/message_orchestrator
 repository: https://github.com/MyOracular/message_orchestrator
 
