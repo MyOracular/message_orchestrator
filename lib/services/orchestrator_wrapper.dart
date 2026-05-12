@@ -7,10 +7,24 @@ import '../orchestrator/message_controller.dart';
 /// A wrapper widget that listens to the MessageOrchestrator
 /// and handles the physical displaying of messages in the app.
 /// Place this high up in your widget tree (e.g., wrapping MaterialApp's builder or home).
+///
+/// When placed in `MaterialApp.builder` (or `ShadcnApp.router`'s builder), the
+/// context is above the Navigator, so `showModalBottomSheet` / `showDialog` will
+/// fail. Supply [navigatorKey] (e.g. your router's `navigatorKey`) so that the
+/// wrapper can obtain a valid below-Navigator context at display time.
 class OrchestratorWrapper extends StatefulWidget {
   final Widget child;
 
-  const OrchestratorWrapper({super.key, required this.child});
+  /// Optional navigator key. When provided, its [GlobalKey.currentContext] is
+  /// used for presenting modals instead of the wrapper's own context, which
+  /// may be above the Navigator in the widget tree.
+  final GlobalKey<NavigatorState>? navigatorKey;
+
+  const OrchestratorWrapper({
+    super.key,
+    required this.child,
+    this.navigatorKey,
+  });
 
   @override
   State<OrchestratorWrapper> createState() => _OrchestratorWrapperState();
@@ -28,14 +42,17 @@ class _OrchestratorWrapperState extends State<OrchestratorWrapper> {
     // This callback is executed when a message needs to be shown.
     if (!mounted) return;
 
-    final context = this.context;
+    // Prefer the navigatorKey's context so this works when the wrapper is
+    // placed above the Navigator in the widget tree (e.g. in app builder).
+    final context = widget.navigatorKey?.currentContext ?? this.context;
 
     try {
       switch (message.type) {
         case MessageType.alert:
           await showDialog(
             context: context,
-            barrierDismissible: false, // Ensure they interact with it if required, or handle via widget
+            barrierDismissible:
+                false, // Ensure they interact with it if required, or handle via widget
             builder: (ctx) => message.builder(ctx),
           );
           break;
