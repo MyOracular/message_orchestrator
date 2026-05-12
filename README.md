@@ -18,4 +18,4 @@ This is NOT just a UI package. It is a complete orchestration framework that pre
 
 ## Getting Started
 
-Check out the `/docs` folder for detailed documentation or the `/example` folder for a working Flutter app demonstrating the features.
+Check out the `/doc` folder for detailed documentation or the `/example` folder for a working Flutter app demonstrating the features.
