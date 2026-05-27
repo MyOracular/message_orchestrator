@@ -4,6 +4,9 @@ A production-grade Flutter package for orchestrating in-app messages, bottom she
 
 This is NOT just a UI package. It is a complete orchestration framework that prevents multiple dialogs from stacking, controls cooldowns between messages, and limits impressions using intelligent policies.
 
+## Pub
+Download from PUB Store [https://pub.dev/packages/flutter_message_orchestrator](https://pub.dev/packages/flutter_message_orchestrator)
+
 ## Features
 
 - **Queue Management**: Safely queue messages. Only one is shown at a time.
